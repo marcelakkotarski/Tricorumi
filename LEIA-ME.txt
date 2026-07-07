@@ -1,0 +1,31 @@
+PÁGINA CATÁLOGO TRICORUMI — AMORE AMIGURUMI
+
+Esta versão já está com os links inseridos:
+
+CONTATOS
+- WhatsApp: https://wa.me/5543988656990
+- Instagram: https://www.instagram.com/marcela_kotarski/
+- YouTube: http://www.youtube.com/@tricorumi
+
+CHECKOUTS
+- Capivara Amora: https://pay.kiwify.com.br/qAjTv46
+- Urso Oliver: https://pay.kiwify.com.br/j05HGEg
+- Coelha Aurora: https://pay.kiwify.com.br/5U9gq43
+- Coelho Bento: https://pay.kiwify.com.br/lStNnac
+- Ratinha: https://pay.kiwify.com.br/4y1oXuR
+- Patinha: https://pay.kiwify.com.br/yaq4Y8y
+
+Arquivos:
+- index.html
+- style.css
+- pasta assets com as imagens dos bichinhos
+
+Para publicar no GitHub Pages:
+1. Crie um repositório no GitHub.
+2. Envie index.html, style.css e a pasta assets.
+3. Vá em Settings > Pages.
+4. Em Source, escolha Deploy from a branch.
+5. Escolha main / root.
+6. Salve e aguarde o link ficar disponível.
+
+Prontinho: vira seu catálogo, sua vitrine e seu link da bio.
