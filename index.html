@@ -1,0 +1,1114 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#b96862">
+  <meta name="description" content="Descubra qual é o melhor caminho para transformar o tricô que você já sabe em bichinhos encantadores com o Método Tricorumi.">
+  <title>Diagnóstico Tricorumi | Descubra seu próximo passo</title>
+
+  <!-- Sem bibliotecas ou fontes externas. As imagens ficam na mesma pasta deste index.html. -->
+  <link rel="preload" href="urso%20Nico.png" as="image" type="image/png" fetchpriority="high">
+
+  <style>
+    :root{
+      --bg:#fff9f3;
+      --paper:#fffdf9;
+      --rose:#b96862;
+      --rose-dark:#864943;
+      --rose-soft:#f2d6cf;
+      --blush:#faece6;
+      --sand:#e9d3bd;
+      --ink:#3c2a25;
+      --muted:#74635d;
+      --gold:#a6784d;
+      --ok:#47755c;
+      --shadow:0 18px 55px rgba(87,53,43,.13);
+      --radius:26px;
+      --serif:Georgia,"Times New Roman",serif;
+      --sans:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(242,214,207,.45), transparent 25rem),
+        radial-gradient(circle at 95% 15%, rgba(233,211,189,.48), transparent 28rem),
+        var(--bg);
+      font-family:var(--sans);
+      line-height:1.5;
+      -webkit-font-smoothing:antialiased;
+    }
+    button,input{font:inherit}
+    button{cursor:pointer}
+    img{display:block;max-width:100%}
+    a{color:inherit}
+    .shell{width:min(1160px,calc(100% - 32px));margin-inline:auto}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+    .topbar{
+      min-height:44px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:8px 16px;
+      color:#fff;
+      background:var(--rose-dark);
+      font-size:.88rem;
+      font-weight:700;
+      text-align:center;
+      letter-spacing:.01em;
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      padding:52px 0 34px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);
+      align-items:center;
+      gap:44px;
+    }
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      padding:8px 14px;
+      border:1px solid rgba(185,104,98,.24);
+      border-radius:999px;
+      color:var(--rose-dark);
+      background:rgba(255,255,255,.72);
+      font-size:.82rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+    .eyebrow::before{content:"♥";font-size:.72rem}
+    h1,h2,h3,p{margin-top:0}
+    .hero h1{
+      max-width:720px;
+      margin:20px 0 18px;
+      font-family:var(--serif);
+      font-size:clamp(2.55rem,5.4vw,5.1rem);
+      line-height:.98;
+      letter-spacing:-.045em;
+    }
+    .hero h1 em{
+      display:block;
+      color:var(--rose);
+      font-weight:400;
+    }
+    .hero-copy{
+      max-width:670px;
+      margin-bottom:24px;
+      color:var(--muted);
+      font-size:clamp(1rem,1.7vw,1.18rem);
+    }
+    .hero-points{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:10px;
+      max-width:670px;
+      margin:0 0 28px;
+    }
+    .hero-point{
+      padding:12px;
+      border:1px solid rgba(185,104,98,.16);
+      border-radius:16px;
+      background:rgba(255,255,255,.78);
+      color:var(--muted);
+      font-size:.88rem;
+      font-weight:700;
+      text-align:center;
+    }
+    .primary-btn,.secondary-btn{
+      min-height:54px;
+      border:0;
+      border-radius:16px;
+      padding:14px 22px;
+      font-weight:850;
+      transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+    }
+    .primary-btn{
+      color:#fff;
+      background:linear-gradient(135deg,var(--rose),var(--rose-dark));
+      box-shadow:0 12px 28px rgba(134,73,67,.24);
+    }
+    .primary-btn:hover,.primary-btn:focus-visible{transform:translateY(-2px);box-shadow:0 16px 34px rgba(134,73,67,.30)}
+    .secondary-btn{
+      color:var(--rose-dark);
+      border:1px solid rgba(185,104,98,.28);
+      background:#fff;
+    }
+    .secondary-btn:hover,.secondary-btn:focus-visible{background:var(--blush)}
+    .microcopy{margin:10px 0 0;color:var(--muted);font-size:.82rem}
+
+    .hero-art{
+      position:relative;
+      max-width:520px;
+      justify-self:center;
+    }
+    .hero-frame{
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(185,104,98,.24);
+      border-radius:38% 38% 24px 24px;
+      background:linear-gradient(180deg,#f7dfd6,#ead5c1);
+      box-shadow:var(--shadow);
+    }
+    .hero-frame::before{
+      content:"";
+      position:absolute;
+      inset:14px;
+      z-index:2;
+      border:1px dashed rgba(134,73,67,.34);
+      border-radius:inherit;
+      pointer-events:none;
+    }
+    .hero-frame img{
+      width:100%;
+      aspect-ratio:1/1;
+      object-fit:cover;
+      object-position:center 46%;
+    }
+    .floating-note{
+      position:absolute;
+      right:-22px;
+      bottom:28px;
+      z-index:3;
+      width:min(230px,62%);
+      padding:14px 16px;
+      border:1px solid rgba(185,104,98,.26);
+      border-radius:18px;
+      background:rgba(255,253,249,.94);
+      box-shadow:0 14px 32px rgba(87,53,43,.14);
+      font-family:var(--serif);
+      font-size:1rem;
+      text-align:center;
+      transform:rotate(-2deg);
+    }
+
+    .projects{padding:24px 0 54px}
+    .section-kicker{color:var(--rose);font-weight:850;text-transform:uppercase;letter-spacing:.08em;font-size:.78rem}
+    .projects h2,.quiz-heading h2{
+      font-family:var(--serif);
+      font-size:clamp(2rem,4vw,3.5rem);
+      line-height:1.04;
+      letter-spacing:-.035em;
+    }
+    .project-strip{
+      display:grid;
+      grid-auto-flow:column;
+      grid-auto-columns:minmax(190px,1fr);
+      gap:14px;
+      overflow-x:auto;
+      padding:4px 4px 18px;
+      scroll-snap-type:x mandatory;
+      scrollbar-width:thin;
+    }
+    .project-card{
+      position:relative;
+      overflow:hidden;
+      min-height:270px;
+      border-radius:22px;
+      border:1px solid rgba(185,104,98,.18);
+      background:#fff;
+      box-shadow:0 10px 30px rgba(87,53,43,.08);
+      scroll-snap-align:start;
+    }
+    .project-card img{width:100%;height:100%;object-fit:cover}
+    .project-card span{
+      position:absolute;
+      left:10px;right:10px;bottom:10px;
+      padding:9px 10px;
+      border-radius:12px;
+      color:#fff;
+      background:rgba(60,42,37,.78);
+      backdrop-filter:blur(6px);
+      font-size:.84rem;
+      font-weight:800;
+      text-align:center;
+    }
+
+    .quiz-section{padding:44px 0 88px}
+    .quiz-heading{max-width:780px;margin:0 auto 26px;text-align:center}
+    .quiz-heading p{color:var(--muted)}
+    .quiz-wrap{
+      width:min(820px,100%);
+      margin-inline:auto;
+      overflow:hidden;
+      border:1px solid rgba(185,104,98,.20);
+      border-radius:var(--radius);
+      background:rgba(255,253,249,.96);
+      box-shadow:var(--shadow);
+    }
+    .quiz-progress{
+      padding:18px 22px 0;
+      background:linear-gradient(180deg,var(--blush),transparent);
+    }
+    .progress-meta{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      color:var(--muted);
+      font-size:.82rem;
+      font-weight:750;
+    }
+    .progress-track{
+      height:8px;
+      margin-top:10px;
+      overflow:hidden;
+      border-radius:999px;
+      background:#eadfd9;
+    }
+    .progress-bar{
+      width:0;
+      height:100%;
+      border-radius:inherit;
+      background:linear-gradient(90deg,var(--rose),var(--rose-dark));
+      transition:width .3s ease;
+    }
+    .quiz-body{padding:32px}
+    .step{display:none;animation:fade .25s ease}
+    .step.active{display:block}
+    @keyframes fade{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+    .question-number{color:var(--rose);font-size:.78rem;font-weight:850;text-transform:uppercase;letter-spacing:.08em}
+    .question-title{
+      margin:7px 0 8px;
+      font-family:var(--serif);
+      font-size:clamp(1.65rem,4vw,2.45rem);
+      line-height:1.12;
+      letter-spacing:-.025em;
+    }
+    .question-help{margin-bottom:22px;color:var(--muted)}
+    .options{display:grid;gap:11px}
+    .option{
+      display:grid;
+      grid-template-columns:28px 1fr;
+      gap:12px;
+      align-items:start;
+      width:100%;
+      padding:15px;
+      border:1px solid #e6d7cf;
+      border-radius:16px;
+      color:var(--ink);
+      background:#fff;
+      text-align:left;
+      transition:border .15s ease,transform .15s ease,background .15s ease;
+    }
+    .option:hover,.option:focus-visible{transform:translateY(-1px);border-color:var(--rose);background:var(--blush)}
+    .option.selected{border-color:var(--rose);background:var(--blush);box-shadow:0 0 0 2px rgba(185,104,98,.10)}
+    .option-marker{
+      display:grid;
+      place-items:center;
+      width:26px;height:26px;
+      border:1px solid rgba(185,104,98,.35);
+      border-radius:50%;
+      color:var(--rose-dark);
+      background:#fff;
+      font-weight:900;
+      font-size:.75rem;
+    }
+    .option strong{display:block;margin-bottom:2px}
+    .option small{display:block;color:var(--muted);line-height:1.35}
+    .quiz-actions{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-top:24px;
+    }
+    .back-btn{
+      border:0;
+      padding:12px 4px;
+      color:var(--muted);
+      background:transparent;
+      font-weight:750;
+    }
+    .next-btn[disabled]{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+    .validation{min-height:22px;margin:10px 0 0;color:#a13f38;font-size:.84rem;font-weight:700}
+    .interstitial{
+      padding:10px 0;
+      text-align:center;
+    }
+    .interstitial-icon{
+      display:grid;
+      place-items:center;
+      width:66px;height:66px;
+      margin:0 auto 18px;
+      border-radius:50%;
+      color:#fff;
+      background:linear-gradient(135deg,var(--rose),var(--rose-dark));
+      font-size:1.45rem;
+    }
+    .interstitial h3{
+      font-family:var(--serif);
+      font-size:clamp(1.8rem,4vw,2.7rem);
+      line-height:1.08;
+    }
+    .interstitial p{max-width:570px;margin:0 auto 24px;color:var(--muted)}
+    .lead-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .field label{display:block;margin-bottom:7px;font-weight:800}
+    .field input{
+      width:100%;
+      min-height:52px;
+      border:1px solid #ddcec6;
+      border-radius:14px;
+      padding:12px 14px;
+      color:var(--ink);
+      background:#fff;
+      outline:none;
+    }
+    .field input:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(185,104,98,.12)}
+    .privacy{margin-top:12px;color:var(--muted);font-size:.78rem}
+
+    .result{display:none}
+    .result.active{display:block}
+    .result-hero{
+      padding:30px;
+      color:#fff;
+      background:linear-gradient(135deg,var(--rose-dark),var(--rose));
+    }
+    .result-hero .eyebrow{color:#fff;border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.12)}
+    .result-hero h2{
+      margin:16px 0 8px;
+      font-family:var(--serif);
+      font-size:clamp(2rem,5vw,3.6rem);
+      line-height:1;
+    }
+    .result-hero p{max-width:680px;margin:0;color:rgba(255,255,255,.88)}
+    .result-content{padding:30px}
+    .diagnosis{
+      padding:17px;
+      border-left:4px solid var(--rose);
+      border-radius:12px;
+      background:var(--blush);
+      color:var(--muted);
+    }
+    .offer-card{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:22px;
+      margin-top:22px;
+      padding:22px;
+      border:1px solid rgba(185,104,98,.22);
+      border-radius:20px;
+      background:#fff;
+      box-shadow:0 12px 34px rgba(87,53,43,.08);
+    }
+    .offer-badge{
+      display:inline-flex;
+      margin-bottom:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      color:#fff;
+      background:var(--ok);
+      font-size:.74rem;
+      font-weight:850;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+    }
+    .offer-card h3{margin-bottom:5px;font-family:var(--serif);font-size:1.8rem}
+    .offer-card p{margin-bottom:10px;color:var(--muted)}
+    .offer-list{margin:0;padding-left:20px;color:var(--muted)}
+    .offer-price{text-align:right;white-space:nowrap}
+    .offer-price small{display:block;color:var(--muted)}
+    .offer-price strong{display:block;font-family:var(--serif);font-size:2rem;color:var(--rose-dark)}
+    .cta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+    .alternative{
+      margin-top:18px;
+      padding:16px;
+      border:1px dashed rgba(185,104,98,.38);
+      border-radius:15px;
+      color:var(--muted);
+      background:#fffaf7;
+    }
+    .alternative a{color:var(--rose-dark);font-weight:850}
+    .result-reset{margin-top:20px;text-align:center}
+    .result-reset button{border:0;color:var(--muted);background:transparent;text-decoration:underline}
+
+    .footer{
+      padding:26px 16px 40px;
+      color:var(--muted);
+      font-size:.8rem;
+      text-align:center;
+    }
+    .footer strong{color:var(--ink)}
+
+    @media (max-width:860px){
+      .hero{padding-top:34px}
+      .hero-grid{grid-template-columns:1fr}
+      .hero-copy{max-width:none}
+      .hero-points{max-width:none}
+      .hero-art{width:min(520px,92%)}
+      .floating-note{right:-8px}
+      .offer-card{grid-template-columns:1fr}
+      .offer-price{text-align:left}
+    }
+    @media (max-width:620px){
+      .shell{width:min(100% - 20px,1160px)}
+      .topbar{font-size:.78rem}
+      .hero h1{font-size:2.7rem}
+      .hero-points{grid-template-columns:1fr}
+      .hero-point{text-align:left}
+      .projects{padding-bottom:30px}
+      .project-strip{grid-auto-columns:72%}
+      .quiz-section{padding-top:30px}
+      .quiz-body{padding:24px 18px}
+      .quiz-progress{padding-inline:18px}
+      .quiz-actions{align-items:stretch}
+      .quiz-actions .primary-btn{flex:1}
+      .lead-grid{grid-template-columns:1fr}
+      .result-content,.result-hero{padding:24px 18px}
+      .cta-row{display:grid}
+      .cta-row a{text-align:center}
+    }
+    @media (prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation:none!important;transition:none!important}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">Diagnóstico gratuito para tricoteiras • Resultado em menos de 2 minutos</div>
+
+  <header class="hero">
+    <div class="shell hero-grid">
+      <div>
+        <span class="eyebrow">Método Tricorumi</span>
+        <h1>Seu tricô está pronto para <em>virar bichinho?</em></h1>
+        <p class="hero-copy">
+          Descubra qual é o melhor caminho para transformar os pontos que você já domina em peças afetivas,
+          diferentes e cheias de valor — sem precisar reaprender tricô desde o começo.
+        </p>
+
+        <div class="hero-points" aria-label="Benefícios do diagnóstico">
+          <div class="hero-point">Identifica seu momento</div>
+          <div class="hero-point">Indica a oferta certa</div>
+          <div class="hero-point">Respeita seu investimento</div>
+        </div>
+
+        <button class="primary-btn" type="button" data-start>Descobrir meu próximo passo</button>
+        <p class="microcopy">Sem prova surpresa. Prometo que nenhuma agulha será confiscada 😂🧶</p>
+      </div>
+
+      <div class="hero-art">
+        <div class="hero-frame">
+          <img
+            src="urso%20Nico.png"
+            alt="Ursinho Nico feito em tricô sobre uma mesa de ateliê"
+            width="760"
+            height="760"
+            decoding="async"
+            fetchpriority="high">
+        </div>
+        <div class="floating-note">Você já sabe tricotar. Agora pode levar suas agulhas além das roupas.</div>
+      </div>
+    </div>
+  </header>
+
+  <section class="projects" aria-labelledby="projects-title">
+    <div class="shell">
+      <span class="section-kicker">Uma nova linha de produtos</span>
+      <h2 id="projects-title">O tricô que você já ama, em novas formas.</h2>
+
+      <div class="project-strip" aria-label="Alguns bichinhos da coleção Tricorumi">
+        <article class="project-card">
+          <img src="patinha.png" alt="Patinha Penélope em tricô" width="440" height="620" loading="lazy" decoding="async">
+          <span>Patinha Penélope</span>
+        </article>
+        <article class="project-card">
+          <img src="coelho-bento.png" alt="Coelho Bento em tricô" width="440" height="620" loading="lazy" decoding="async">
+          <span>Coelho Bento</span>
+        </article>
+        <article class="project-card">
+          <img src="ratinha.png" alt="Ratinha Bella em tricô" width="440" height="620" loading="lazy" decoding="async">
+          <span>Ratinha Bella</span>
+        </article>
+        <article class="project-card">
+          <img src="coelha-aurora.png" alt="Coelha Aurora em tricô" width="440" height="620" loading="lazy" decoding="async">
+          <span>Coelha Aurora</span>
+        </article>
+        <article class="project-card">
+          <img src="urso_oliver.png" alt="Urso Oliver em tricô" width="440" height="620" loading="lazy" decoding="async">
+          <span>Urso Oliver</span>
+        </article>
+        <article class="project-card">
+          <img src="capivara-amora.png" alt="Capivara feita em tricô" width="440" height="620" loading="lazy" decoding="async">
+          <span>Capivara em tricô</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <main class="quiz-section" id="diagnostico">
+    <div class="shell">
+      <div class="quiz-heading">
+        <span class="section-kicker">Diagnóstico personalizado</span>
+        <h2>Qual caminho combina com você agora?</h2>
+        <p>Suas respostas serão cruzadas com seu objetivo, o tipo de orientação que procura e o valor que deseja investir.</p>
+      </div>
+
+      <section class="quiz-wrap" aria-live="polite">
+        <div id="quiz-panel">
+          <div class="quiz-progress">
+            <div class="progress-meta">
+              <span id="progress-label">Pergunta 1 de 8</span>
+              <span id="progress-percent">12%</span>
+            </div>
+            <div class="progress-track" aria-hidden="true">
+              <div class="progress-bar" id="progress-bar"></div>
+            </div>
+          </div>
+
+          <div class="quiz-body" id="quiz-body">
+            <!-- Steps are rendered by vanilla JavaScript. -->
+          </div>
+        </div>
+
+        <section class="result" id="result" aria-labelledby="result-title">
+          <div class="result-hero">
+            <span class="eyebrow">Seu diagnóstico</span>
+            <h2 id="result-title"></h2>
+            <p id="result-summary"></p>
+          </div>
+
+          <div class="result-content">
+            <div class="diagnosis" id="result-diagnosis"></div>
+
+            <article class="offer-card">
+              <div>
+                <span class="offer-badge" id="offer-badge">Recomendado para você</span>
+                <h3 id="offer-name"></h3>
+                <p id="offer-description"></p>
+                <ul class="offer-list" id="offer-list"></ul>
+              </div>
+              <div class="offer-price">
+                <small id="offer-payment"></small>
+                <strong id="offer-price"></strong>
+                <small id="offer-access"></small>
+              </div>
+            </article>
+
+            <div class="cta-row">
+              <a class="primary-btn" id="offer-link" href="#" rel="nofollow">Quero seguir este caminho</a>
+              <a class="secondary-btn" id="whatsapp-link" href="#" rel="nofollow">Tirar uma dúvida no WhatsApp</a>
+            </div>
+
+            <div class="alternative" id="alternative"></div>
+
+            <div class="result-reset">
+              <button type="button" id="reset-quiz">Refazer o diagnóstico</button>
+            </div>
+          </div>
+        </section>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <strong>Amore Amigurumi • Método Tricorumi</strong><br>
+    Este diagnóstico oferece uma recomendação de produto com base nas respostas informadas.
+  </footer>
+
+  <script>
+    "use strict";
+
+    /*
+      EDITE SOMENTE ESTE BLOCO:
+      1) Cole os links de checkout.
+      2) Informe o número do WhatsApp com DDI + DDD + número, apenas dígitos.
+      3) O webhook é opcional; deixe vazio para não enviar dados.
+    */
+    const CONFIG = {
+      links: {
+        pdf: "",
+        mini: "",
+        completo: "",
+        clube: ""
+      },
+      whatsapp: "55SEUDDDSEUNUMERO",
+      webhookUrl: ""
+    };
+
+    const QUESTIONS = [
+      {
+        id: "producao",
+        title: "O que você já costuma produzir em tricô?",
+        help: "Escolha a alternativa que mais representa sua rotina atual.",
+        options: [
+          {value:"tradicional", label:"Roupas, mantas, toucas ou peças para bebê", note:"Eu já tricoto peças tradicionais e quero ampliar meu repertório.", scores:{mini:1,completo:3}},
+          {value:"presentes", label:"Peças para presentear ou para minha família", note:"Tricoto por prazer, afeto e realização pessoal.", scores:{pdf:2,mini:2}},
+          {value:"vendas", label:"Encomendas ou produtos para vender", note:"Quero oferecer novidades e me diferenciar de outras artesãs.", scores:{completo:4,mini:1}},
+          {value:"bichinhos", label:"Já faço alguns bichinhos ou peças modeladas", note:"Quero ter novos projetos com frequência.", scores:{clube:5,completo:1}}
+        ]
+      },
+      {
+        id: "experiencia",
+        title: "Como você se sente com as agulhas hoje?",
+        help: "Não existe resposta certa. O importante é indicar de onde você está partindo.",
+        options: [
+          {value:"retomando", label:"Sei o básico, mas estou retomando agora", note:"Quero revisar alguns pontos antes de avançar.", scores:{mini:4,pdf:1}},
+          {value:"segura", label:"Faço peças com segurança", note:"Consigo seguir receitas e finalizar meus projetos.", scores:{completo:3,pdf:1}},
+          {value:"avancada", label:"Tenho bastante experiência em tricô", note:"Procuro novidade, modelagem e acabamento.", scores:{completo:4,clube:2}},
+          {value:"tricorumi", label:"Já conheço a construção de bichinhos", note:"Quero principalmente ampliar minha coleção de receitas.", scores:{clube:6}}
+        ]
+      },
+      {
+        interstitial:true,
+        title:"Você não precisa começar do zero.",
+        text:"O Tricorumi foi pensado para aproveitar o tricô que você já sabe e mostrar como transformar pontos em corpos, cabeças, membros e personalidade."
+      },
+      {
+        id: "objetivo",
+        title: "O que você mais deseja conquistar com o Tricorumi?",
+        help: "Esta resposta tem bastante peso na recomendação.",
+        options: [
+          {value:"experimentar", label:"Experimentar a técnica com um único projeto", note:"Quero descobrir se gosto antes de avançar.", scores:{pdf:6}},
+          {value:"colecao", label:"Aprender com orientação e fazer uma pequena coleção", note:"Quero começar com alguns bichinhos e sentir segurança.", scores:{mini:6,completo:1}},
+          {value:"catalogo", label:"Criar uma nova linha para vender o ano inteiro", note:"Quero variedade, método e maior valor percebido.", scores:{completo:8}},
+          {value:"novidades", label:"Ter sempre novos bichinhos para fazer", note:"Já tenho base e quero continuidade.", scores:{clube:7}}
+        ]
+      },
+      {
+        id: "dor",
+        title: "O que mais trava você na hora de fazer bichinhos em tricô?",
+        help: "Vamos descobrir o tipo de apoio que realmente faria diferença.",
+        options: [
+          {value:"receita", label:"Encontrar uma receita clara e confiável", note:"Com um bom passo a passo, acredito que consigo.", scores:{pdf:4,clube:1}},
+          {value:"modelagem", label:"Entender aumentos, diminuições e modelagem", note:"Preciso compreender como a forma do bichinho é construída.", scores:{mini:4,completo:4}},
+          {value:"montagem", label:"Montagem, costura e acabamento", note:"Quero um resultado bonito, firme e profissional.", scores:{completo:5,mini:2}},
+          {value:"variedade", label:"Falta de variedade no meu catálogo", note:"Quero projetos diferentes para encantar minhas clientes.", scores:{completo:5,clube:3}}
+        ]
+      },
+      {
+        interstitial:true,
+        title:"Seu próximo produto pode nascer das habilidades que você já tem.",
+        text:"Muitas tricoteiras não precisam aprender mais pontos. Precisam de uma rota clara para transformar esses pontos em um produto novo, afetivo e vendável."
+      },
+      {
+        id: "formato",
+        title: "Como você prefere aprender?",
+        help: "Pense no formato que faria você realmente concluir o projeto.",
+        options: [
+          {value:"pdf", label:"Receita em PDF, para seguir no meu ritmo", note:"Prefiro consultar o passo a passo escrito.", scores:{pdf:5,clube:2}},
+          {value:"videos", label:"Vídeos e receitas, com orientação", note:"Quero acompanhar a construção e tirar inseguranças.", scores:{mini:5,completo:3}},
+          {value:"metodo", label:"Um método completo, organizado do básico ao avançado", note:"Quero dominar a técnica, não apenas copiar um projeto.", scores:{completo:8}},
+          {value:"biblioteca", label:"Uma biblioteca para escolher novos projetos", note:"Quero liberdade e novidades recorrentes.", scores:{clube:7}}
+        ]
+      },
+      {
+        id: "quantidade",
+        title: "Quantos projetos combinam com seu momento?",
+        help: "A quantidade ajuda a separar curiosidade, formação e continuidade.",
+        options: [
+          {value:"um", label:"1 bichinho", note:"Quero testar com um projeto específico.", scores:{pdf:7}},
+          {value:"cinco", label:"5 bichinhos", note:"Quero uma coleção inicial, com orientação.", scores:{mini:7}},
+          {value:"quinze", label:"15 bichinhos", note:"Quero variedade e uma formação completa.", scores:{completo:8}},
+          {value:"continuo", label:"Novos projetos de forma contínua", note:"Prefiro uma assinatura enquanto estiver criando.", scores:{clube:8}}
+        ]
+      },
+      {
+        interstitial:true,
+        title:"Agora vamos alinhar desejo e investimento.",
+        text:"A recomendação considera o que você quer conquistar e quanto deseja investir agora. Assim, o resultado não vira apenas uma etiqueta de preço."
+      },
+      {
+        id: "investimento",
+        title: "Quanto você se sente confortável em investir neste momento?",
+        help: "Os valores aparecem com transparência para que sua escolha seja consciente.",
+        options: [
+          {value:"pdf", label:"R$ 47,90 — uma receita em PDF", note:"Um bichinho, acesso vitalício ao material comprado.", scores:{pdf:9}},
+          {value:"mini", label:"R$ 127,87 — minicurso com 5 bichinhos", note:"Aulas e PDFs para começar com orientação.", scores:{mini:9}},
+          {value:"completo", label:"R$ 297,00 — curso completo com 15 bichinhos", note:"Método completo e acesso por 1 ano.", scores:{completo:10}},
+          {value:"clube", label:"R$ 47,90 por mês — Clube Tricorumi", note:"Acesso à biblioteca enquanto a assinatura estiver ativa.", scores:{clube:10}}
+        ]
+      },
+      {
+        id: "decisao",
+        title: "Qual frase mais combina com você?",
+        help: "Esta é a última pergunta do diagnóstico.",
+        options: [
+          {value:"curiosa", label:"Quero experimentar sem assumir um compromisso maior", note:"Primeiro eu preciso comprovar que consigo.", scores:{pdf:5}},
+          {value:"orientada", label:"Quero começar com orientação e alguns projetos", note:"Prefiro avançar em uma etapa menor.", scores:{mini:5}},
+          {value:"pronta", label:"Estou pronta para transformar meu catálogo", note:"Quero aprender de verdade e ter variedade para vender.", scores:{completo:7}},
+          {value:"criadora", label:"Quero continuar criando novos bichinhos", note:"A recorrência faz sentido para a minha rotina.", scores:{clube:6}}
+        ]
+      },
+      {
+        id:"lead",
+        lead:true,
+        title:"Seu resultado está pronto ✨",
+        help:"Preencha seus dados para ver a recomendação personalizada.",
+      }
+    ];
+
+    const OFFERS = {
+      pdf: {
+        resultTitle:"Seu perfil é Exploradora do Tricorumi",
+        summary:"Você quer começar de forma leve, experimentar a técnica e concluir um primeiro bichinho antes de dar um passo maior.",
+        diagnosis:"Seu principal desejo é comprovar, na prática, que consegue transformar o tricô em um bichinho. Uma receita avulsa reduz o risco percebido e permite testar a experiência sem sobrecarregar sua rotina.",
+        name:"Receita Tricorumi em PDF",
+        description:"Um projeto completo para você experimentar o Tricorumi no seu ritmo.",
+        items:["1 receita digital completa","Passo a passo organizado","Material para consultar sempre que quiser"],
+        payment:"pagamento único",
+        price:"R$ 47,90",
+        access:"acesso vitalício ao PDF",
+        cta:"Quero escolher meu primeiro bichinho",
+        badge:"Melhor começo para você"
+      },
+      mini: {
+        resultTitle:"Seu perfil é Tricoteira em Transição",
+        summary:"Você já tem base no tricô, mas quer orientação para entender a construção dos bichinhos e ganhar confiança nos primeiros projetos.",
+        diagnosis:"Você não precisa de uma formação enorme para começar, mas também não quer depender apenas de uma receita. O minicurso equilibra acompanhamento, prática e investimento.",
+        name:"Minicurso Tricorumi",
+        description:"Uma rota guiada para aprender os fundamentos e produzir seus primeiros cinco bichinhos.",
+        items:["Aulas em vídeo","5 receitas em PDF","Projetos para praticar modelagem, montagem e acabamento"],
+        payment:"pagamento único",
+        price:"R$ 127,87",
+        access:"consulte as condições de acesso na oferta",
+        cta:"Quero começar com o minicurso",
+        badge:"Entrada com orientação"
+      },
+      completo: {
+        resultTitle:"Seu perfil é Tricoteira Pronta para Inovar",
+        summary:"Você quer ir além de um projeto isolado: deseja dominar a técnica, ampliar o catálogo e transformar o tricô em uma nova linha de produtos.",
+        diagnosis:"Pelo seu objetivo, o maior risco seria comprar projetos soltos e continuar sem compreender a lógica da construção. O Método Completo oferece sequência, variedade e aplicação comercial.",
+        name:"Método Tricorumi Completo",
+        description:"A formação principal para transformar o tricô que você já sabe em uma coleção completa de bichinhos.",
+        items:["Método organizado do fundamento ao acabamento","15 bichinhos para ampliar seu repertório","Possibilidade de criar, presentear e vender durante o ano inteiro"],
+        payment:"pagamento único",
+        price:"R$ 297,00",
+        access:"acesso por 1 ano",
+        cta:"Quero transformar meu tricô",
+        badge:"Melhor custo-benefício"
+      },
+      clube: {
+        resultTitle:"Seu perfil é Criadora em Movimento",
+        summary:"Você já possui base suficiente e busca principalmente variedade, liberdade e novos projetos para continuar criando.",
+        diagnosis:"Sua necessidade não é reaprender o tricô. O que mantém sua motivação é ter uma biblioteca de projetos para escolher e novidades enquanto a assinatura estiver ativa.",
+        name:"Clube Tricorumi",
+        description:"Uma assinatura para acessar a biblioteca e escolher novos bichinhos conforme sua vontade de criar.",
+        items:["Biblioteca de receitas disponível na plataforma","Novas possibilidades para seu catálogo","Acesso enquanto a assinatura estiver ativa"],
+        payment:"assinatura mensal",
+        price:"R$ 47,90/mês",
+        access:"acesso enquanto a assinatura estiver ativa",
+        cta:"Quero entrar para o clube",
+        badge:"Continuidade criativa"
+      }
+    };
+
+    const state = {index:0, answers:{}, lead:{}, startedAt:Date.now()};
+    const scoringKeys = ["pdf","mini","completo","clube"];
+
+    const els = {
+      body:document.getElementById("quiz-body"),
+      progressLabel:document.getElementById("progress-label"),
+      progressPercent:document.getElementById("progress-percent"),
+      progressBar:document.getElementById("progress-bar"),
+      panel:document.getElementById("quiz-panel"),
+      result:document.getElementById("result")
+    };
+
+    function visibleQuestionCount(){
+      return QUESTIONS.filter(q => !q.interstitial && !q.lead).length;
+    }
+
+    function currentQuestionNumber(index){
+      let count = 0;
+      for(let i=0;i<=index;i++){
+        if(!QUESTIONS[i].interstitial && !QUESTIONS[i].lead) count++;
+      }
+      return Math.max(1,count);
+    }
+
+    function updateProgress(){
+      const total = visibleQuestionCount();
+      const item = QUESTIONS[state.index];
+      let current = currentQuestionNumber(state.index);
+
+      if(item && item.lead) current = total;
+      const pct = Math.round((current / total) * 100);
+
+      els.progressLabel.textContent = item && item.lead ? "Resultado pronto" : `Pergunta ${current} de ${total}`;
+      els.progressPercent.textContent = `${pct}%`;
+      els.progressBar.style.width = `${pct}%`;
+    }
+
+    function optionButton(question, option, idx){
+      const selected = state.answers[question.id] === option.value;
+      return `
+        <button type="button" class="option${selected ? " selected":""}" data-option="${escapeHtml(option.value)}">
+          <span class="option-marker">${String.fromCharCode(65 + idx)}</span>
+          <span><strong>${escapeHtml(option.label)}</strong><small>${escapeHtml(option.note)}</small></span>
+        </button>`;
+    }
+
+    function render(){
+      const q = QUESTIONS[state.index];
+      updateProgress();
+
+      if(q.interstitial){
+        els.body.innerHTML = `
+          <div class="step active interstitial">
+            <div class="interstitial-icon">🧶</div>
+            <h3>${escapeHtml(q.title)}</h3>
+            <p>${escapeHtml(q.text)}</p>
+            <button type="button" class="primary-btn" data-continue>Continuar</button>
+          </div>`;
+        els.body.querySelector("[data-continue]").addEventListener("click", next);
+        return;
+      }
+
+      if(q.lead){
+        els.body.innerHTML = `
+          <div class="step active">
+            <span class="question-number">Último passo</span>
+            <h3 class="question-title">${escapeHtml(q.title)}</h3>
+            <p class="question-help">${escapeHtml(q.help)}</p>
+
+            <div class="lead-grid">
+              <div class="field">
+                <label for="lead-name">Seu primeiro nome</label>
+                <input id="lead-name" name="name" autocomplete="given-name" placeholder="Como posso chamar você?">
+              </div>
+              <div class="field">
+                <label for="lead-whatsapp">Seu WhatsApp</label>
+                <input id="lead-whatsapp" name="whatsapp" inputmode="tel" autocomplete="tel" placeholder="(DDD) número">
+              </div>
+            </div>
+            <p class="privacy">Usaremos seus dados apenas para apresentar seu resultado e, se configurado, dar continuidade ao atendimento.</p>
+            <div class="validation" id="validation" role="alert"></div>
+
+            <div class="quiz-actions">
+              <button type="button" class="back-btn" data-back>← Voltar</button>
+              <button type="button" class="primary-btn" data-result>Ver meu diagnóstico</button>
+            </div>
+          </div>`;
+
+        els.body.querySelector("[data-back]").addEventListener("click", back);
+        els.body.querySelector("[data-result]").addEventListener("click", collectLead);
+        return;
+      }
+
+      const selected = state.answers[q.id];
+      els.body.innerHTML = `
+        <div class="step active">
+          <span class="question-number">Diagnóstico Tricorumi</span>
+          <h3 class="question-title">${escapeHtml(q.title)}</h3>
+          <p class="question-help">${escapeHtml(q.help)}</p>
+          <div class="options">${q.options.map((o,i)=>optionButton(q,o,i)).join("")}</div>
+          <div class="validation" id="validation" role="alert"></div>
+          <div class="quiz-actions">
+            <button type="button" class="back-btn" data-back ${state.index === 0 ? 'style="visibility:hidden"':''}>← Voltar</button>
+            <button type="button" class="primary-btn next-btn" data-next ${selected ? "":"disabled"}>Continuar</button>
+          </div>
+        </div>`;
+
+      els.body.querySelectorAll("[data-option]").forEach(btn=>{
+        btn.addEventListener("click",()=>{
+          state.answers[q.id] = btn.dataset.option;
+          render();
+        });
+      });
+      els.body.querySelector("[data-next]").addEventListener("click", next);
+      els.body.querySelector("[data-back]").addEventListener("click", back);
+    }
+
+    function next(){
+      const q = QUESTIONS[state.index];
+      if(q && !q.interstitial && !q.lead && !state.answers[q.id]){
+        const val = document.getElementById("validation");
+        if(val) val.textContent = "Escolha uma alternativa para continuar.";
+        return;
+      }
+      if(state.index < QUESTIONS.length - 1){
+        state.index++;
+        render();
+        focusQuiz();
+      }
+    }
+
+    function back(){
+      if(state.index > 0){
+        state.index--;
+        render();
+        focusQuiz();
+      }
+    }
+
+    function focusQuiz(){
+      document.getElementById("diagnostico").scrollIntoView({behavior:"smooth",block:"start"});
+    }
+
+    function collectLead(){
+      const name = document.getElementById("lead-name").value.trim();
+      const whatsapp = document.getElementById("lead-whatsapp").value.replace(/\D/g,"");
+      const val = document.getElementById("validation");
+
+      if(name.length < 2){
+        val.textContent = "Digite seu primeiro nome.";
+        return;
+      }
+      if(whatsapp.length < 10){
+        val.textContent = "Digite um WhatsApp com DDD.";
+        return;
+      }
+
+      state.lead = {name,whatsapp};
+      showResult();
+    }
+
+    function calculate(){
+      const scores = {pdf:0,mini:0,completo:0,clube:0};
+
+      QUESTIONS.forEach(q=>{
+        if(!q.options || !state.answers[q.id]) return;
+        const option = q.options.find(o=>o.value === state.answers[q.id]);
+        if(!option || !option.scores) return;
+        scoringKeys.forEach(k=>scores[k] += option.scores[k] || 0);
+      });
+
+      // Regras estratégicas: objetivo e maturidade valem mais que preço isolado.
+      if(state.answers.objetivo === "catalogo") scores.completo += 5;
+      if(state.answers.quantidade === "quinze") scores.completo += 5;
+      if(state.answers.experiencia === "tricorumi" && state.answers.quantidade === "continuo") scores.clube += 7;
+      if(state.answers.objetivo === "experimentar" && state.answers.quantidade === "um") scores.pdf += 5;
+      if(state.answers.objetivo === "colecao" && state.answers.quantidade === "cinco") scores.mini += 5;
+
+      return scores;
+    }
+
+    function chooseWinner(scores){
+      return scoringKeys.reduce((best,key)=>scores[key] > scores[best] ? key : best, "pdf");
+    }
+
+    function budgetAlternative(winner){
+      const budget = state.answers.investimento;
+
+      if(winner === "completo" && budget === "pdf"){
+        return `Pelo seu objetivo, o <strong>Método Completo</strong> é o caminho mais coerente. Mas, se hoje você prefere começar menor, use uma <a href="${buildUrl(CONFIG.links.pdf)}">receita avulsa de R$ 47,90</a> como experiência inicial.`;
+      }
+      if(winner === "completo" && budget === "mini"){
+        return `Seu objetivo aponta para a formação completa. Para começar em uma etapa menor, o <a href="${buildUrl(CONFIG.links.mini)}">Minicurso com 5 bichinhos</a> é a alternativa mais próxima do que você procura.`;
+      }
+      if(winner === "mini" && budget === "pdf"){
+        return `Você demonstrou que precisa de orientação, mas prefere investir menos agora. Pode começar com <a href="${buildUrl(CONFIG.links.pdf)}">uma receita em PDF</a> e evoluir depois para as aulas.`;
+      }
+      if(winner === "pdf" && budget === "completo"){
+        return `Você tem orçamento para uma formação maior, mas suas respostas indicam que prefere testar primeiro. Caso queira aproveitar o melhor custo-benefício, conheça também o <a href="${buildUrl(CONFIG.links.completo)}">Método Completo</a>.`;
+      }
+      if(winner !== "clube" && budget === "clube"){
+        return `A assinatura combina com quem já quer continuidade. Pelo seu momento atual, recomendamos primeiro a opção acima; depois, o Clube pode manter sua coleção crescendo.`;
+      }
+      return `A recomendação foi escolhida pelo conjunto das suas respostas — objetivo, experiência, formato de aprendizagem e investimento — e não apenas pelo preço.`;
+    }
+
+    async function showResult(){
+      const scores = calculate();
+      const winner = chooseWinner(scores);
+      const offer = OFFERS[winner];
+
+      document.getElementById("result-title").textContent = `${state.lead.name}, ${offer.resultTitle.toLowerCase()}`;
+      document.getElementById("result-summary").textContent = offer.summary;
+      document.getElementById("result-diagnosis").textContent = offer.diagnosis;
+      document.getElementById("offer-badge").textContent = offer.badge;
+      document.getElementById("offer-name").textContent = offer.name;
+      document.getElementById("offer-description").textContent = offer.description;
+      document.getElementById("offer-list").innerHTML = offer.items.map(i=>`<li>${escapeHtml(i)}</li>`).join("");
+      document.getElementById("offer-payment").textContent = offer.payment;
+      document.getElementById("offer-price").textContent = offer.price;
+      document.getElementById("offer-access").textContent = offer.access;
+
+      const offerLink = document.getElementById("offer-link");
+      offerLink.textContent = offer.cta;
+      offerLink.href = buildUrl(CONFIG.links[winner]);
+
+      const wa = document.getElementById("whatsapp-link");
+      const message = `Oi! Fiz o diagnóstico Tricorumi e meu resultado foi: ${offer.name}. Quero tirar uma dúvida.`;
+      wa.href = CONFIG.whatsapp.includes("SEU")
+        ? "#"
+        : `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(message)}`;
+
+      document.getElementById("alternative").innerHTML = budgetAlternative(winner);
+
+      els.panel.style.display = "none";
+      els.result.classList.add("active");
+      els.result.scrollIntoView({behavior:"smooth",block:"start"});
+
+      const payload = {
+        createdAt:new Date().toISOString(),
+        source:"quiz-tricorumi",
+        lead:state.lead,
+        answers:state.answers,
+        scores,
+        result:winner,
+        utm:getUtm(),
+        durationSeconds:Math.round((Date.now()-state.startedAt)/1000)
+      };
+
+      try{ localStorage.setItem("tricorumiQuizResult",JSON.stringify(payload)); }catch(e){}
+
+      if(CONFIG.webhookUrl){
+        try{
+          await fetch(CONFIG.webhookUrl,{
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify(payload),
+            keepalive:true
+          });
+        }catch(e){
+          console.warn("Não foi possível enviar o lead ao webhook.",e);
+        }
+      }
+    }
+
+    function getUtm(){
+      const p = new URLSearchParams(location.search);
+      const keys = ["utm_source","utm_medium","utm_campaign","utm_content","utm_term","fbclid"];
+      return keys.reduce((obj,k)=>{
+        if(p.get(k)) obj[k]=p.get(k);
+        return obj;
+      },{});
+    }
+
+    function buildUrl(url){
+      if(!url) return "#";
+      const utm = getUtm();
+      try{
+        const parsed = new URL(url,location.href);
+        Object.entries(utm).forEach(([k,v])=>parsed.searchParams.set(k,v));
+        return parsed.toString();
+      }catch(e){ return url; }
+    }
+
+    function escapeHtml(value){
+      return String(value ?? "").replace(/[&<>"']/g,char=>({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+      })[char]);
+    }
+
+    document.querySelectorAll("[data-start]").forEach(btn=>{
+      btn.addEventListener("click",focusQuiz);
+    });
+
+    document.getElementById("reset-quiz").addEventListener("click",()=>{
+      state.index=0;
+      state.answers={};
+      state.lead={};
+      state.startedAt=Date.now();
+      els.result.classList.remove("active");
+      els.panel.style.display="block";
+      render();
+      focusQuiz();
+    });
+
+    render();
+  </script>
+</body>
+</html>
