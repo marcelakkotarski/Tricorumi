@@ -1,0 +1,30 @@
+PÁGINA DO QUIZ TRICORUMI
+
+Arquivos gerados:
+- index.html
+- estilo.css
+
+Como usar:
+1. Envie index.html e estilo.css para a mesma pasta do seu repositório GitHub Pages.
+2. Mantenha as imagens dos bichinhos na mesma pasta, com os nomes exatamente iguais aos da sua lista:
+   Coelha Alice.png
+   Elefante Tito.png
+   Ovelha Nina.png
+   Trio de Naninhas.png
+   capivara-amora.png
+   coelha-aurora.png
+   coelho-bento.png
+   patinha.png
+   ratinha.png
+   urso Nico.png
+   urso-ludovico.png
+   urso_oliver.png
+3. Se algum nome de imagem estiver diferente, ajuste o nome no arquivo index.html.
+4. Os links de compra já foram inseridos:
+   Curso Completo: https://pay.kiwify.com.br/CundvKR
+   Mini Curso: https://pay.kiwify.com.br/R3ps4Yp
+   Clube do Tricorumi: https://pay.kiwify.com.br/QopXDAs
+   PDFs Avulsos: https://marcelakkotarski.github.io/amigurumiemtricocatalogo/
+
+Observação:
+A página usa fontes Google Fonts: Amatic SC e Comfortaa.
