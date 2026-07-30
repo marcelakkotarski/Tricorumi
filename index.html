@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f6ede7">
+  <title>Quiz Tricorumi | Descubra sua fase no tricô</title>
+  <meta name="description" content="Descubra qual caminho do Tricorumi combina com a sua fase atual.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Comfortaa:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#4b3832;--muted:#765f57;--rose:#b76575;--rose-dark:#914a5b;
+      --blush:#f1d7d8;--sand:#f6ede7;--cream:#fffaf6;--white:#fff;
+      --line:#ead8d0;--shadow:0 22px 60px rgba(83,53,45,.14);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;overflow:hidden}
+    body{
+      font-family:"Comfortaa",sans-serif;color:var(--ink);
+      background:
+        radial-gradient(circle at 8% 12%,rgba(241,215,216,.9),transparent 28%),
+        radial-gradient(circle at 92% 88%,rgba(230,205,187,.8),transparent 28%),
+        var(--sand);
+    }
+    button,a{font:inherit}
+    button:focus-visible,a:focus-visible{outline:3px solid #d89aaa;outline-offset:3px}
+    .shell{height:100dvh;display:grid;grid-template-rows:auto 1fr;padding:max(14px,env(safe-area-inset-top)) clamp(14px,3vw,34px) max(14px,env(safe-area-inset-bottom))}
+    .top{width:min(980px,100%);margin:auto;display:flex;align-items:center;justify-content:space-between;gap:18px;padding-bottom:10px}
+    .brand{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+    .brand i{font-style:normal;font-size:1.35rem}
+    .progress{display:none;width:min(300px,44vw)}
+    .track{height:7px;background:rgba(255,255,255,.65);border-radius:99px;overflow:hidden}
+    .fill{height:100%;width:0;background:linear-gradient(90deg,var(--rose),#d99aaa);border-radius:inherit;transition:width .35s ease}
+    .progress small{display:block;margin-top:5px;text-align:right;color:var(--muted);font-size:.67rem}
+    main{min-height:0;display:grid;place-items:center}
+    .card{
+      width:min(880px,100%);max-height:100%;overflow:hidden;background:rgba(255,250,246,.96);
+      border:1px solid rgba(255,255,255,.9);border-radius:30px;box-shadow:var(--shadow);
+      padding:clamp(22px,5vh,48px) clamp(18px,5vw,62px);text-align:center;
+      animation:enter .35s ease both;
+    }
+    @keyframes enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    .eyebrow{display:inline-block;color:var(--rose-dark);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
+    h1,h2,h3,p{margin-top:0}
+    h1,h2{font-family:"Amatic SC",cursive;line-height:.92;color:var(--rose-dark)}
+    h1{font-size:clamp(3rem,8vw,5.6rem);margin-bottom:14px}
+    h2{font-size:clamp(2.25rem,5.5vw,4rem);margin-bottom:14px}
+    h3{font-size:clamp(1.15rem,2.8vw,1.6rem);line-height:1.35;margin-bottom:20px}
+    p{line-height:1.6;color:var(--muted);font-size:clamp(.86rem,1.7vw,1rem)}
+    .lead{max-width:670px;margin:0 auto 24px}
+    .micro{margin:12px 0 0;font-size:.72rem}
+    .btn{
+      border:0;border-radius:16px;padding:14px 22px;min-height:50px;cursor:pointer;text-decoration:none;
+      display:inline-flex;align-items:center;justify-content:center;font-weight:700;transition:.2s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .primary{color:#fff;background:linear-gradient(135deg,var(--rose),var(--rose-dark));box-shadow:0 10px 24px rgba(145,74,91,.24)}
+    .ghost{color:var(--rose-dark);background:#fff;border:1px solid var(--line)}
+    .answers{display:grid;grid-template-columns:1fr 1fr;gap:11px;text-align:left}
+    .answer{
+      width:100%;border:1px solid var(--line);border-radius:16px;background:#fff;color:var(--ink);
+      padding:13px 15px;min-height:58px;cursor:pointer;line-height:1.35;font-weight:600;font-size:clamp(.76rem,1.5vw,.9rem);
+      transition:.18s ease;
+    }
+    .answer:hover{border-color:#cf8e9c;background:#fff7f7;transform:translateY(-1px)}
+    .answer b{display:block;color:var(--rose-dark);margin-bottom:3px;font-size:.9em}
+    .message-card{max-width:720px}
+    .message-icon{font-size:clamp(2.6rem,7vw,4.5rem);display:block;margin-bottom:12px}
+    .message-card p{max-width:590px;margin:0 auto 24px}
+    .result-card{padding-top:clamp(18px,3.5vh,34px);padding-bottom:clamp(18px,3.5vh,34px)}
+    .result-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(18px,4vw,38px);align-items:center;text-align:left}
+    .result-layout h2{font-size:clamp(2.5rem,5vw,4.3rem);margin-bottom:7px}
+    .result-layout p{font-size:clamp(.76rem,1.4vw,.91rem);margin-bottom:12px}
+    .price{display:flex;align-items:baseline;gap:8px;color:var(--rose-dark);margin:8px 0 13px}
+    .price strong{font-size:clamp(1.65rem,4vw,2.5rem)}
+    .price span{font-size:.76rem;color:var(--muted)}
+    .included{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:6px}
+    .included li{font-size:clamp(.7rem,1.35vw,.84rem);line-height:1.35}
+    .included li::before{content:"✓";color:var(--rose);font-weight:700;margin-right:7px}
+    .result-actions{display:flex;gap:9px;flex-wrap:wrap}
+    .result-actions .btn{font-size:.78rem;min-height:46px;padding:12px 17px}
+    .recommend{
+      background:linear-gradient(145deg,#f6e2df,#ead0ca);border-radius:23px;padding:clamp(18px,3vw,28px);
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.65)
+    }
+    .recommend .stamp{font-size:2.3rem;display:block;margin-bottom:7px}
+    .recommend strong{display:block;color:var(--rose-dark);margin-bottom:8px}
+    .guarantee{font-size:.68rem!important;margin:9px 0 0!important}
+    .other-title{margin:14px 0 7px!important;font-size:.7rem!important;font-weight:700;color:var(--ink)!important}
+    .other-options{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+    .other-option{
+      min-width:0;padding:8px 7px;border:1px solid var(--line);border-radius:11px;background:#fff;
+      color:var(--rose-dark);text-decoration:none;text-align:center;font-size:.58rem;line-height:1.3;font-weight:700;
+    }
+    .other-option span{display:block;margin-top:2px;color:var(--muted);font-size:.52rem;font-weight:500}
+    .other-option:hover{border-color:#cf8e9c;background:#fff7f7}
+    .back{position:fixed;left:18px;bottom:14px;border:0;background:transparent;color:var(--muted);font-size:.72rem;cursor:pointer}
+    @media(max-width:640px){
+      .shell{padding-left:12px;padding-right:12px}
+      .top{padding-bottom:7px}
+      .brand span:last-child{display:none}
+      .progress{width:58vw}
+      .card{border-radius:22px;padding:20px 15px}
+      h1{font-size:clamp(2.8rem,14vw,4rem)}
+      h2{font-size:clamp(2.2rem,11vw,3.2rem)}
+      h3{font-size:.98rem;margin-bottom:13px}
+      .answers{grid-template-columns:1fr;gap:7px}
+      .answer{min-height:48px;padding:9px 12px;font-size:.72rem}
+      .result-layout{grid-template-columns:1fr;gap:11px}
+      .recommend{padding:13px 15px}
+      .recommend p{margin-bottom:5px}
+      .result-actions .btn{flex:1}
+      .included{grid-template-columns:1fr 1fr;gap:4px 8px}
+      .included li{font-size:.62rem}
+      .other-title{margin-top:9px!important}.other-option{padding:6px 4px;font-size:.52rem}
+    }
+    @media(max-height:650px){
+      .top{padding-bottom:5px}.card{padding-top:15px;padding-bottom:15px}
+      h1{margin-bottom:7px}h2{margin-bottom:7px}h3{margin-bottom:10px}
+      .lead{margin-bottom:13px}.answer{min-height:44px;padding-top:8px;padding-bottom:8px}
+      .message-icon{font-size:2.4rem;margin-bottom:6px}.message-card p{margin-bottom:12px}
+    }
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="top">
+      <div class="brand"><i>🧶</i><span>Tricorumi • feito com amor</span></div>
+      <div class="progress" id="progress">
+        <div class="track"><div class="fill" id="fill"></div></div>
+        <small id="progressText"></small>
+      </div>
+    </header>
+    <main id="app" aria-live="polite"></main>
+  </div>
+
+  <script>
+    const links={
+      completo:"https://pay.kiwify.com.br/CundvKR",
+      mini:"https://pay.kiwify.com.br/R3ps4Yp",
+      clube:"https://pay.kiwify.com.br/QopXDAs",
+      pdf:"https://marcelakkotarski.github.io/amigurumiemtricocatalogo/"
+    };
+
+    const techniqueMessages={
+      yes:{
+        icon:"✨",
+        title:"Então você já percebeu que algo novo está acontecendo.",
+        text:"Os bichinhos e as peças afetivas em tricô estão conquistando cada vez mais espaço. Elas unem delicadeza, memória afetiva e um acabamento diferente — exatamente o tipo de peça que chama atenção, desperta desejo e aumenta as possibilidades de venda para a artesã."
+      },
+      no:{
+        icon:"🧶",
+        title:"Prepare-se para descobrir um novo mundo no tricô.",
+        text:"O Tricorumi é uma técnica europeia que chegou ao Brasil há cerca de dois anos e vem se tornando uma nova sensação do artesanato brasileiro. Ela transforma o tricô em bichinhos afetivos, macios e cheios de personalidade — peças diferentes, encantadoras e com grande potencial para presentear ou vender."
+      }
+    };
+
+    const screens=[
+      {type:"question",technique:true,title:"Você já ouviu falar no Tricorumi?",answers:[
+        ["Sim, já ouvi falar e fiquei curiosa.",{}],
+        ["Não, essa é a primeira vez.",{}]
+      ]},
+      {type:"techniqueMessage"},
+      {type:"question",title:"O que você já costuma produzir em tricô?",answers:[
+        ["Ainda estou aprendendo os primeiros pontos.",{mini:4,completo:1}],
+        ["Roupinhas, acessórios ou peças para bebê.",{completo:4,clube:1}],
+        ["Já faço peças variadas e sigo receitas com autonomia.",{pdf:3,clube:2}],
+        ["Tricoto sempre e vivo procurando projetos novos.",{clube:4,completo:2}]
+      ]},
+      {type:"question",title:"Como você se sente com as agulhas hoje?",answers:[
+        ["Insegura: preciso aprender ou reforçar a base.",{mini:4,completo:1}],
+        ["Já sei tricotar, mas quero orientação para fazer bichinhos.",{completo:4}],
+        ["Segura: consigo seguir uma receita sozinha.",{pdf:4}],
+        ["Muito à vontade: quero variedade e desafios novos.",{clube:4,completo:1}]
+      ]},
+      {type:"message",icon:"💛",title:"Você não precisa começar do zero.",text:"Tudo o que você já aprendeu no tricô pode ganhar uma nova forma. O Tricorumi aproveita suas habilidades e transforma pontos conhecidos em bichinhos afetivos, diferentes e encantadores."},
+      {type:"question",title:"O que mais chama sua atenção no Tricorumi?",answers:[
+        ["Aprender a técnica por completo e montar uma coleção.",{completo:5}],
+        ["Começar por poucas peças, com orientação.",{mini:5}],
+        ["Escolher apenas o bichinho que mais gostei.",{pdf:5}],
+        ["Ter uma biblioteca cheia e receber novidades.",{clube:5}]
+      ]},
+      {type:"question",title:"Qual é sua maior dificuldade hoje?",answers:[
+        ["Falta de confiança para começar algo novo.",{mini:4}],
+        ["Falta de um método completo e organizado.",{completo:4}],
+        ["Não preciso de aula; quero apenas uma boa receita.",{pdf:4}],
+        ["Fico sem ideias e quero projetos sempre à mão.",{clube:4}]
+      ]},
+      {type:"message",icon:"🧶",title:"Muita artesã também já se sentiu assim.",text:"A diferença não está em tricotar mais e mais do mesmo. Está em descobrir um caminho que combine com sua fase — e permita criar peças que poucas artesãs ainda conhecem."},
+      {type:"question",title:"O que você mais deseja conquistar com o Tricorumi?",answers:[
+        ["Dominar a técnica e criar peças para vender.",{completo:5}],
+        ["Fazer meus primeiros bichinhos sem me perder.",{mini:5}],
+        ["Testar a técnica com um personagem específico.",{pdf:5}],
+        ["Manter meu repertório sempre renovado.",{clube:5}]
+      ]},
+      {type:"question",title:"Como você prefere aprender e criar?",answers:[
+        ["Com curso estruturado, do básico a vários projetos.",{completo:4}],
+        ["Com um curso menor e direto para ganhar confiança.",{mini:4}],
+        ["No meu ritmo, comprando uma receita quando quiser.",{pdf:4}],
+        ["No meu ritmo, acessando uma biblioteca enquanto assino.",{clube:4}]
+      ]},
+      {type:"message",icon:"✨",title:"Seu tricô pode ir além.",text:"O Tricorumi está ganhando espaço justamente porque une o aconchego do tricô à fofura dos bichinhos. Você não precisa fazer tudo agora — só escolher o próximo passo certo."},
+      {type:"question",title:"Qual destas opções faz mais sentido para você hoje?",price:true,answers:[
+        ["Curso completo","R$ 297 • módulo básico + 15 bichinhos • acesso por 1 ano",{completo:3}],
+        ["Mini curso","R$ 127 • módulo básico + 5 bichinhos",{mini:3}],
+        ["Clube de assinaturas","R$ 19,90 no 1º mês; depois R$ 47,90/mês • pague e use quando quiser",{clube:3}],
+        ["PDF avulso","R$ 47,90 cada • escolha somente o bichinho que quiser",{pdf:3}]
+      ]}
+    ];
+
+    const products={
+      completo:{
+        title:"Curso Completo de Tricorumi",price:"R$ 297,00",suffix:"pagamento único",
+        intro:"Você está pronta para levar seu tricô a um novo nível. Seu resultado mostra que não quer apenas copiar uma receita: quer dominar uma técnica encantadora, construir repertório e criar peças que façam as pessoas parar, olhar e desejar.",
+        items:["Módulo básico de tricô","15 bichinhos passo a passo","Acesso por 1 ano","Ideal para aprender, criar e vender"],
+        cta:"Quero o curso completo",url:links.completo
+      },
+      mini:{
+        title:"Mini Curso de Tricorumi",price:"R$ 127,00",suffix:"pagamento único",
+        intro:"Seu momento pede um começo leve, possível e cheio de pequenas conquistas. Com orientação e projetos escolhidos para dar segurança, você poderá sentir aquela alegria deliciosa de olhar o primeiro bichinho pronto e pensar: “fui eu que fiz!”.",
+        items:["Módulo básico de tricô","5 bichinhos passo a passo","Aprendizado direto e acolhedor","Ideal para os primeiros projetos"],
+        cta:"Quero o mini curso",url:links.mini
+      },
+      clube:{
+        title:"Clube do Tricorumi",price:"R$ 19,90",suffix:"no primeiro mês",
+        intro:"Você é movida por novidade, inspiração e pela vontade de criar sempre mais. Imagine abrir uma biblioteca de Tricorumi e escolher, a cada novo projeto, qual personagem vai nascer das suas agulhas.",
+        items:["Depois, R$ 47,90 por mês","Biblioteca completa enquanto assina","Novas receitas adicionadas","Cancele quando quiser"],
+        cta:"Quero entrar no clube",url:links.clube
+      },
+      pdf:{
+        title:"PDF Avulso",price:"R$ 47,90",suffix:"cada receita",
+        intro:"Você gosta de liberdade e já sabe o que faz seus olhos brilharem: encontrar um bichinho encantador, escolher a receita e começar. Um único personagem pode ser o início de uma paixão — o perigo é querer fazer a família inteira depois 😂.",
+        items:["Escolha somente seu favorito","Receita digital passo a passo","Compre quando quiser","Ideal para testar a técnica"],
+        cta:"Quero escolher um PDF",url:links.pdf
+      }
+    };
+
+    const app=document.getElementById("app");
+    const progress=document.getElementById("progress");
+    const fill=document.getElementById("fill");
+    const progressText=document.getElementById("progressText");
+    let index=-1;
+    let scores={completo:0,mini:0,clube:0,pdf:0};
+    let answers=[];
+    let techniqueAnswer="no";
+
+    function questionPosition(){
+      return screens.slice(0,index+1).filter(s=>s.type==="question").length;
+    }
+    function updateProgress(){
+      const current=questionPosition();
+      const total=screens.filter(s=>s.type==="question").length;
+      progress.style.display=index>=0?"block":"none";
+      fill.style.width=`${Math.max(0,(current-1)/total*100)}%`;
+      progressText.textContent=current?`Pergunta ${current} de ${total}`:"";
+    }
+    function start(){index=0;render()}
+    function render(){
+      updateProgress();
+      const s=screens[index];
+      if(s.type==="message") return renderMessage(s);
+      if(s.type==="techniqueMessage") return renderMessage(techniqueMessages[techniqueAnswer]);
+      const answersHtml=s.answers.map((a,i)=>{
+        const label=s.price?`<b>${a[0]}</b>${a[1]}`:a[0];
+        return `<button class="answer" type="button" data-i="${i}">${label}</button>`;
+      }).join("");
+      app.innerHTML=`<section class="card">
+        <span class="eyebrow">${s.price?"Última pergunta • seu investimento":"Descubra sua fase atual no tricô"}</span>
+        <h3>${s.title}</h3>
+        <div class="answers">${answersHtml}</div>
+      </section>`;
+      app.querySelectorAll(".answer").forEach(btn=>btn.onclick=()=>choose(+btn.dataset.i));
+    }
+    function renderMessage(s){
+      app.innerHTML=`<section class="card message-card">
+        <span class="message-icon">${s.icon}</span>
+        <h2>${s.title}</h2>
+        <p>${s.text}</p>
+        <button class="btn primary" type="button" id="continue">Continuar</button>
+      </section>`;
+      document.getElementById("continue").onclick=next;
+    }
+    function choose(i){
+      const choice=screens[index].answers[i];
+      if(screens[index].technique) techniqueAnswer=i===0?"yes":"no";
+      const score=choice[choice.length-1];
+      Object.entries(score).forEach(([k,v])=>scores[k]+=v);
+      answers.push({screen:index,choice:i,score});
+      next();
+    }
+    function next(){
+      index++;
+      if(index<screens.length) render(); else showResult();
+    }
+    function winner(){
+      const priority=["completo","mini","clube","pdf"];
+      return priority.sort((a,b)=>scores[b]-scores[a])[0];
+    }
+    function showResult(){
+      progress.style.display="block";fill.style.width="100%";progressText.textContent="Resultado pronto ✨";
+      const key=winner(),p=products[key];
+      const alternatives=Object.entries(products).filter(([k])=>k!==key)
+        .map(([k,v])=>`<a class="other-option" href="${v.url}" target="_blank" rel="noopener">${v.title}<span>${v.price}</span></a>`).join("");
+      app.innerHTML=`<section class="card result-card">
+        <div class="result-layout">
+          <div>
+            <span class="eyebrow">Seu melhor próximo passo</span>
+            <h2>${p.title}</h2>
+            <p>${p.intro}</p>
+            <div class="price"><strong>${p.price}</strong><span>${p.suffix}</span></div>
+            <ul class="included">${p.items.map(x=>`<li>${x}</li>`).join("")}</ul>
+            <div class="result-actions">
+              <a class="btn primary" href="${p.url}" target="_blank" rel="noopener">${p.cta}</a>
+              <button class="btn ghost" type="button" id="restart">Refazer quiz</button>
+            </div>
+            <p class="other-title">Mudou de ideia? Você também pode escolher:</p>
+            <div class="other-options">${alternatives}</div>
+          </div>
+          <aside class="recommend">
+            <span class="stamp">💛</span>
+            <strong>Por que combina com você?</strong>
+            <p>A indicação considera seu nível, sua forma de aprender, seu objetivo e o investimento que faz sentido agora — não apenas a última resposta.</p>
+            <p><strong>Garantia de 7 dias.</strong> Você pode conhecer o conteúdo e decidir com tranquilidade.</p>
+            <p class="guarantee">A técnica ainda é pouco conhecida por muitas artesãs e está ganhando mercado pelo apelo afetivo e visual.</p>
+          </aside>
+        </div>
+      </section>`;
+      document.getElementById("restart").onclick=restart;
+    }
+    function restart(){
+      index=0;scores={completo:0,mini:0,clube:0,pdf:0};answers=[];techniqueAnswer="no";
+      render();
+    }
+    function renderIntro(){
+      progress.style.display="none";
+      app.innerHTML=`<section class="card">
+        <span class="eyebrow">Quiz rápido • resultado personalizado</span>
+        <h1>Descubra sua fase atual no tricô</h1>
+        <p class="lead">Em poucos passos, descubra se o melhor caminho para você é o curso completo, o mini curso, o clube de assinaturas ou um PDF avulso.</p>
+        <button class="btn primary" type="button" id="start">Descobrir meu caminho</button>
+        <p class="micro">Leva cerca de 2 minutos • sem cadastro • resultado na hora</p>
+      </section>`;
+      document.getElementById("start").onclick=start;
+    }
+    index=0;
+    render();
+  </script>
+</body>
+</html>
