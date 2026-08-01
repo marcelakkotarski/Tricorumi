@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f6ede7">
+  <title>Quiz Tricorumi | Descubra sua fase no tricô</title>
+  <meta name="description" content="Descubra qual caminho do Tricorumi combina com a sua fase atual.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Comfortaa:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#4b3832;--muted:#765f57;--rose:#b76575;--rose-dark:#914a5b;
+      --blush:#f1d7d8;--sand:#f6ede7;--cream:#fffaf6;--white:#fff;
+      --line:#ead8d0;--shadow:0 22px 60px rgba(83,53,45,.14);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;overflow:hidden}
+    body{
+      font-family:"Comfortaa",sans-serif;color:var(--ink);
+      background:
+        radial-gradient(circle at 8% 12%,rgba(241,215,216,.9),transparent 28%),
+        radial-gradient(circle at 92% 88%,rgba(230,205,187,.8),transparent 28%),
+        var(--sand);
+    }
+    button,a{font:inherit}
+    button:focus-visible,a:focus-visible{outline:3px solid #d89aaa;outline-offset:3px}
+    .shell{height:100dvh;display:grid;grid-template-rows:auto 1fr;padding:max(14px,env(safe-area-inset-top)) clamp(14px,3vw,34px) max(14px,env(safe-area-inset-bottom))}
+    .top{width:min(980px,100%);margin:auto;display:flex;align-items:center;justify-content:space-between;gap:18px;padding-bottom:10px}
+    .brand{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+    .brand i{font-style:normal;font-size:1.35rem}
+    .progress{display:none;width:min(300px,44vw)}
+    .track{height:7px;background:rgba(255,255,255,.65);border-radius:99px;overflow:hidden}
+    .fill{height:100%;width:0;background:linear-gradient(90deg,var(--rose),#d99aaa);border-radius:inherit;transition:width .35s ease}
+    .progress small{display:block;margin-top:5px;text-align:right;color:var(--muted);font-size:.67rem}
+    main{min-height:0;display:grid;place-items:center}
+    .card{
+      width:min(880px,100%);max-height:100%;overflow:hidden;background:rgba(255,250,246,.96);
+      border:1px solid rgba(255,255,255,.9);border-radius:30px;box-shadow:var(--shadow);
+      padding:clamp(22px,5vh,48px) clamp(18px,5vw,62px);text-align:center;
+      animation:enter .35s ease both;
+    }
+    @keyframes enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    .eyebrow{display:inline-block;color:var(--rose-dark);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
+    h1,h2,h3,p{margin-top:0}
+    h1,h2{font-family:"Amatic SC",cursive;line-height:.92;color:var(--rose-dark)}
+    h1{font-size:clamp(3rem,8vw,5.6rem);margin-bottom:14px}
+    h2{font-size:clamp(2.25rem,5.5vw,4rem);margin-bottom:14px}
+    h3{font-size:clamp(1.15rem,2.8vw,1.6rem);line-height:1.35;margin-bottom:20px}
+    p{line-height:1.6;color:var(--muted);font-size:clamp(.86rem,1.7vw,1rem)}
+    .lead{max-width:670px;margin:0 auto 24px}
+    .micro{margin:12px 0 0;font-size:.72rem}
+    .btn{
+      border:0;border-radius:16px;padding:14px 22px;min-height:50px;cursor:pointer;text-decoration:none;
+      display:inline-flex;align-items:center;justify-content:center;font-weight:700;transition:.2s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .primary{color:#fff;background:linear-gradient(135deg,var(--rose),var(--rose-dark));box-shadow:0 10px 24px rgba(145,74,91,.24)}
+    .ghost{color:var(--rose-dark);background:#fff;border:1px solid var(--line)}
+    .answers{display:grid;grid-template-columns:1fr 1fr;gap:11px;text-align:left}
+    .answer{
+      width:100%;border:1px solid var(--line);border-radius:16px;background:#fff;color:var(--ink);
+      padding:13px 15px;min-height:58px;cursor:pointer;line-height:1.35;font-weight:600;font-size:clamp(.76rem,1.5vw,.9rem);
+      transition:.18s ease;
+    }
+    .answer:hover{border-color:#cf8e9c;background:#fff7f7;transform:translateY(-1px)}
+    .answer b{display:block;color:var(--rose-dark);margin-bottom:3px;font-size:.9em}
+    .question-heading{display:grid;grid-template-columns:148px 1fr;align-items:center;gap:22px;margin-bottom:18px;text-align:left}
+    .question-heading h3{margin:0}
+    .question-animal{
+      width:148px;height:148px;object-fit:cover;object-position:center 62%;border-radius:24px;
+      border:4px solid #fff;box-shadow:0 10px 26px rgba(83,53,45,.16)
+    }
+    .visual-showcase{display:flex;align-items:center;justify-content:center;gap:10px;margin:0 auto 18px}
+    .visual-showcase figure{margin:0;position:relative}
+    .visual-showcase img{
+      width:84px;height:84px;object-fit:cover;object-position:center 68%;border-radius:20px;
+      border:3px solid #fff;box-shadow:0 8px 22px rgba(83,53,45,.14)
+    }
+    .visual-showcase figure:nth-child(2){transform:translateY(-5px)}
+    .visual-showcase figcaption{position:absolute;inset:auto 4px 4px;padding:3px 5px;border-radius:8px;background:rgba(75,56,50,.78);color:#fff;font-size:.46rem;font-weight:700}
+    .message-card{max-width:720px}
+    .message-icon{font-size:clamp(2.6rem,7vw,4.5rem);display:block;margin-bottom:12px}
+    .message-card p{max-width:590px;margin:0 auto 24px}
+    .message-product{display:grid;grid-template-columns:minmax(240px,300px) 1fr;align-items:center;gap:clamp(24px,5vw,44px);text-align:left}
+    .product-preview{margin:0;position:relative}
+    .product-preview img{
+      width:100%;height:min(48vh,340px);object-fit:cover;object-position:center 68%;border-radius:28px;
+      border:4px solid #fff;box-shadow:0 14px 34px rgba(83,53,45,.18)
+    }
+    .product-preview figcaption{margin-top:10px;text-align:center;color:var(--rose-dark);font-size:.86rem;font-weight:700}
+    .message-copy h2{font-size:clamp(2.15rem,5vw,3.5rem)}
+    .message-copy p{margin:0 0 22px;max-width:none;font-size:clamp(.98rem,1.8vw,1.12rem)}
+    html.result-mode,body.result-mode{height:auto;min-height:100%;overflow-y:auto}
+    body.result-mode .shell{height:auto;min-height:100dvh}
+    body.result-mode main{display:block;width:100%;padding:16px 0 34px}
+    body.result-mode .card{max-height:none;overflow:visible}
+    .result-animal{width:min(100%,260px);aspect-ratio:1;object-fit:cover;object-position:center 68%;border-radius:24px;border:4px solid #fff;box-shadow:0 10px 24px rgba(83,53,45,.16);margin:0 auto 16px;display:block}
+    body.result-mode .result-card{width:min(1060px,100%);padding-top:clamp(28px,5vw,54px);padding-bottom:clamp(28px,5vw,54px)}
+    .result-layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(260px,.75fr);gap:clamp(24px,5vw,52px);align-items:start;text-align:left}
+    .result-layout h2{font-size:clamp(2.5rem,5vw,4.3rem);margin-bottom:7px}
+    .result-layout p{font-size:clamp(.96rem,1.5vw,1.06rem);line-height:1.65;margin-bottom:16px}
+    .price{display:flex;align-items:baseline;gap:8px;color:var(--rose-dark);margin:8px 0 13px}
+    .price strong{font-size:clamp(1.65rem,4vw,2.5rem)}
+    .price span{font-size:.95rem;color:var(--muted)}
+    .included{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:6px}
+    .included li{font-size:clamp(.7rem,1.35vw,.84rem);line-height:1.35}
+    .included li::before{content:"✓";color:var(--rose);font-weight:700;margin-right:7px}
+    .product-showcase{margin:18px 0 22px;padding:20px;border:1px solid var(--line);border-radius:20px;background:#fffaf7}
+    .product-showcase-title{display:block;margin-bottom:14px;color:var(--rose-dark);font-size:1.08rem;line-height:1.45;font-weight:700}
+    .project-thumbs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:16px}
+    .project-thumb{margin:0;min-width:0;flex:1;text-align:center}
+    .project-thumb img{width:100%;aspect-ratio:1;object-fit:cover;object-position:center 62%;border-radius:14px;border:3px solid #fff;box-shadow:0 6px 16px rgba(83,53,45,.13)}
+    .project-thumb figcaption{margin-top:6px;color:var(--muted);font-size:.7rem;line-height:1.25;font-weight:700}
+    .module-note,.showcase-extra{margin:10px 0!important;font-size:.93rem!important;line-height:1.55!important}
+    .module-note{color:var(--ink)!important;font-weight:700}
+    .showcase-extra{color:var(--rose-dark)!important;font-weight:700}
+    .piece-grid{list-style:none;padding:0;margin:14px 0;display:grid;grid-template-columns:1fr 1fr;gap:9px 16px}
+    .piece-grid li{position:relative;padding-left:20px;color:var(--muted);font-size:.88rem;line-height:1.45}
+    .piece-grid li::before{content:"♥";position:absolute;left:0;color:var(--rose)}
+    .result-actions{display:flex;gap:9px;flex-wrap:wrap}
+    .result-actions .btn{font-size:.94rem;min-height:52px;padding:14px 20px}
+    .recommend{
+      background:linear-gradient(145deg,#f6e2df,#ead0ca);border-radius:23px;padding:clamp(18px,3vw,28px);
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.65)
+    }
+    .recommend .stamp{font-size:2.3rem;display:block;margin-bottom:7px}
+    .recommend strong{display:block;color:var(--rose-dark);margin-bottom:10px;font-size:1.02rem}
+    .guarantee{font-size:.9rem!important;margin:12px 0 0!important}
+    .other-title{margin:24px 0 10px!important;font-size:.95rem!important;font-weight:700;color:var(--ink)!important}
+    .other-options{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+    .other-option{
+      min-width:0;padding:12px 9px;border:1px solid var(--line);border-radius:12px;background:#fff;
+      color:var(--rose-dark);text-decoration:none;text-align:center;font-size:.76rem;line-height:1.35;font-weight:700;
+    }
+    .other-option span{display:block;margin-top:4px;color:var(--muted);font-size:.68rem;font-weight:500}
+    .other-option:hover{border-color:#cf8e9c;background:#fff7f7}
+    .back{position:fixed;left:18px;bottom:14px;border:0;background:transparent;color:var(--muted);font-size:.72rem;cursor:pointer}
+    @media(max-width:640px){
+      .shell{padding-left:12px;padding-right:12px}
+      .top{padding-bottom:7px}
+      .brand span:last-child{display:none}
+      .progress{width:58vw}
+      .card{border-radius:22px;padding:20px 15px}
+      h1{font-size:clamp(2.8rem,14vw,4rem)}
+      h2{font-size:clamp(2.2rem,11vw,3.2rem)}
+      h3{font-size:.98rem;margin-bottom:13px}
+      .answers{grid-template-columns:1fr;gap:7px}
+      .answer{min-height:48px;padding:9px 12px;font-size:.72rem}
+      .question-heading{grid-template-columns:104px 1fr;gap:13px;margin-bottom:12px}
+      .question-animal{width:104px;height:104px;border-radius:18px;border-width:3px}
+      .visual-showcase{gap:6px;margin-bottom:12px}.visual-showcase img{width:66px;height:66px;border-radius:16px}.visual-showcase figcaption{display:none}
+      .message-product{grid-template-columns:minmax(145px,40vw) 1fr;gap:15px}
+      .product-preview img{width:100%;height:min(42vh,245px);border-radius:20px}
+      .product-preview figcaption{font-size:.72rem;margin-top:7px}
+      .message-copy h2{font-size:2.15rem;margin-bottom:10px}.message-copy p{font-size:.84rem;line-height:1.5;margin-bottom:13px}
+      .message-copy .btn{min-height:44px;padding:10px 15px}
+      .result-layout{grid-template-columns:1fr;gap:11px}
+      .result-card{padding:26px 17px}
+      .recommend{padding:20px 18px}
+      .recommend p{margin-bottom:10px}
+      .result-animal{width:min(100%,300px)}
+      .result-actions .btn{flex:1}
+      .included{grid-template-columns:1fr 1fr;gap:4px 8px}
+      .included li{font-size:.62rem}
+      .product-showcase{margin:16px 0 20px;padding:15px}.product-showcase-title{font-size:1rem;margin-bottom:12px}
+      .project-thumbs{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:15px}.project-thumb figcaption{font-size:.76rem}
+      .module-note,.showcase-extra{font-size:.9rem!important;line-height:1.55!important;margin:9px 0!important}
+      .piece-grid{grid-template-columns:1fr;gap:8px}.piece-grid li{font-size:.88rem}
+      .other-options{grid-template-columns:1fr}.other-title{margin-top:22px!important}.other-option{padding:12px;font-size:.82rem}.other-option span{font-size:.74rem}
+    }
+    @media(max-height:650px){
+      .top{padding-bottom:5px}.card{padding-top:15px;padding-bottom:15px}
+      h1{margin-bottom:7px}h2{margin-bottom:7px}h3{margin-bottom:10px}
+      .lead{margin-bottom:13px}.answer{min-height:44px;padding-top:8px;padding-bottom:8px}
+      .message-icon{font-size:2.4rem;margin-bottom:6px}.message-card p{margin-bottom:12px}
+      .visual-showcase{margin-bottom:8px}.visual-showcase img{width:56px;height:56px}
+      body:not(.result-mode) .question-heading{grid-template-columns:82px 1fr;gap:10px;margin-bottom:8px}body:not(.result-mode) .question-animal{width:82px;height:82px}
+      body:not(.result-mode) .message-product{grid-template-columns:132px 1fr}body:not(.result-mode) .product-preview img{height:150px}body:not(.result-mode) .product-preview figcaption{font-size:.64rem}
+      body:not(.result-mode) .message-copy h2{font-size:1.85rem}body:not(.result-mode) .message-copy p{font-size:.76rem;line-height:1.42}
+    }
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="top">
+      <div class="brand"><i>🧶</i><span>Tricorumi • feito com amor</span></div>
+      <div class="progress" id="progress">
+        <div class="track"><div class="fill" id="fill"></div></div>
+        <small id="progressText"></small>
+      </div>
+    </header>
+    <main id="app" aria-live="polite"></main>
+  </div>
+
+  <script>
+    const links={
+      completo:"https://pay.kiwify.com.br/CundvKR",
+      mini:"https://pay.kiwify.com.br/R3ps4Yp",
+      clube:"https://pay.kiwify.com.br/QopXDAs",
+      pdf:"https://marcelakkotarski.github.io/amigurumiemtricocatalogo/"
+    };
+
+    const techniqueMessages={
+      yes:{
+        icon:"✨",
+        image:"patinha.png",
+        imageAlt:"Patinha Penélope feita em tricô",
+        character:"Patinha Penélope",
+        title:"Então você já percebeu que algo novo está acontecendo.",
+        text:"Os bichinhos e as peças afetivas em tricô estão conquistando cada vez mais espaço. Esta é a Patinha Penélope: ela faz parte do curso, com passo a passo e tutorial em vídeo para auxiliar você durante a produção da peça."
+      },
+      no:{
+        icon:"🧶",
+        image:"patinha.png",
+        imageAlt:"Patinha Penélope feita em tricô",
+        character:"Patinha Penélope",
+        title:"Prepare-se para descobrir um novo mundo no tricô.",
+        text:"O Tricorumi transforma o tricô em bichinhos afetivos, macios e cheios de personalidade. Esta é a Patinha Penélope: ela faz parte do curso, com passo a passo e tutorial em vídeo para acompanhar você durante a produção."
+      }
+    };
+
+    const screens=[
+      {type:"question",technique:true,image:"Coelha Alice.png",imageAlt:"Coelha Alice feita em tricô",title:"Você já ouviu falar no Tricorumi?",answers:[
+        ["Sim, já ouvi falar e fiquei curiosa.",{}],
+        ["Não, essa é a primeira vez.",{}]
+      ]},
+      {type:"techniqueMessage"},
+      {type:"question",image:"Elefante Tito.png",imageAlt:"Elefante Tito feito em tricô",title:"O que você já costuma produzir em tricô?",answers:[
+        ["Ainda estou aprendendo os primeiros pontos.",{mini:4,completo:1}],
+        ["Roupinhas, acessórios ou peças para bebê.",{completo:4,clube:1}],
+        ["Já faço peças variadas e sigo receitas com autonomia.",{pdf:3,clube:2}],
+        ["Tricoto sempre e vivo procurando projetos novos.",{clube:4,completo:2}]
+      ]},
+      {type:"question",image:"Ovelha Nina.png",imageAlt:"Ovelha Nina feita em tricô",title:"Como você se sente com as agulhas hoje?",answers:[
+        ["Insegura: preciso aprender ou reforçar a base.",{mini:4,completo:1}],
+        ["Já sei tricotar, mas quero orientação para fazer bichinhos.",{completo:4}],
+        ["Segura: consigo seguir uma receita sozinha.",{pdf:4}],
+        ["Muito à vontade: quero variedade e desafios novos.",{clube:4,completo:1}]
+      ]},
+      {type:"message",icon:"💛",image:"urso Nico.png",imageAlt:"Urso Nico feito em tricô",character:"Urso Nico",title:"Você não precisa começar do zero.",text:"Este é o Urso Nico, um dos projetos do curso. Você aprende a construção da peça com orientação clara, receita passo a passo e aula em vídeo para ganhar confiança nos primeiros bichinhos."},
+      {type:"question",image:"Trio de Naninhas.png",imageAlt:"Trio de Naninhas feito em tricô",title:"O que mais chama sua atenção no Tricorumi?",answers:[
+        ["Aprender a técnica por completo e montar uma coleção.",{completo:5}],
+        ["Começar por poucas peças, com orientação.",{mini:5}],
+        ["Escolher apenas o bichinho que mais gostei.",{pdf:5}],
+        ["Ter uma biblioteca cheia e receber novidades.",{clube:5}]
+      ]},
+      {type:"question",image:"capivara-amora.png",imageAlt:"Capivara Amora feita em tricô",title:"Qual é sua maior dificuldade hoje?",answers:[
+        ["Falta de confiança para começar algo novo.",{mini:4}],
+        ["Falta de um método completo e organizado.",{completo:4}],
+        ["Não preciso de aula; quero apenas uma boa receita.",{pdf:4}],
+        ["Fico sem ideias e quero projetos sempre à mão.",{clube:4}]
+      ]},
+      {type:"message",icon:"🧶",image:"Trio de Naninhas.png",imageAlt:"Trio de Naninhas feito em tricô",character:"Trio de Naninhas",title:"Peças que encantam e abrem novas possibilidades.",text:"O Trio de Naninhas faz parte do curso e tem grande apelo para enxovais e presentes afetivos. Você aprende cada personagem com passo a passo e apoio em vídeo."},
+      {type:"question",image:"coelha-aurora.png",imageAlt:"Coelha Aurora feita em tricô",title:"O que você mais deseja conquistar com o Tricorumi?",answers:[
+        ["Dominar a técnica e criar peças para vender.",{completo:5}],
+        ["Fazer meus primeiros bichinhos sem me perder.",{mini:5}],
+        ["Testar a técnica com um personagem específico.",{pdf:5}],
+        ["Manter meu repertório sempre renovado.",{clube:5}]
+      ]},
+      {type:"question",image:"coelho-bento.png",imageAlt:"Coelho Bento feito em tricô",title:"Como você prefere aprender e criar?",answers:[
+        ["Com curso estruturado, do básico a vários projetos.",{completo:4}],
+        ["Com um curso menor e direto para ganhar confiança.",{mini:4}],
+        ["No meu ritmo, comprando uma receita quando quiser.",{pdf:4}],
+        ["No meu ritmo, acessando uma biblioteca enquanto assino.",{clube:4}]
+      ]},
+      {type:"message",icon:"✨",image:"urso_oliver.png",imageAlt:"Urso Oliver feito em tricô",character:"Urso Oliver",title:"Seu tricô pode ir além.",text:"Este é o Urso Oliver, uma das peças do Curso Completo. Ele representa o acabamento afetivo e sofisticado que transforma o tricô em presente, decoração e produto de maior valor percebido."},
+      {type:"question",image:"patinha.png",imageAlt:"Patinha Penélope feita em tricô",title:"Qual destas opções faz mais sentido para você hoje?",price:true,answers:[
+        ["Curso completo","R$ 297 (parcelado em 10x) • módulo básico + coleção completa • acesso por 1 ano",{completo:3}],
+        ["Mini curso","R$ 127 (parcelado em 10x) • módulo básico + 9 projetos",{mini:3}],
+        ["Clube de assinaturas","R$ 19,90 no 1º mês; depois R$ 47,90/mês • pague e use quando quiser",{clube:3}],
+        ["PDF avulso","R$ 47,90 cada • escolha somente o bichinho que quiser",{pdf:3}]
+      ]}
+    ];
+
+    const products={
+      completo:{
+        image:"urso_oliver.png",imageAlt:"Urso Oliver feito em tricô",
+        showcaseTitle:"Tudo o que você poderá produzir no Curso Completo",
+        module:"Módulo Tricô Básico — para aprender ou aperfeiçoar seu tricô.",
+        extra:"Comece pela Coelha Lola, com videoaula passo a passo para fazer sua primeira peça. Acesso por 1 ano.",
+        gallery:[
+          ["Coelha Alice.png","Coelha Alice"],["Elefante Tito.png","Elefante Tito"],["Ovelha Nina.png","Ovelha Nina"],["patinha.png","Pata Penélope"],["urso_oliver.png","Urso Oliver"]
+        ],
+        pieces:["Coelha Lola","Ratinha Bela","Gato Pedro","Urso Nico","Ovelha Nina","Trio de Naninhas (Pato, Ovelha e Cachorro)","Gato Neco","Pata Penélope","Coelha Alice","Elefante Tito","Coelha Aurora","Coelho Bento","Capivara Amora","Urso Oliver"],
+        title:"Curso Completo de Tricorumi",price:"R$ 297,00",suffix:"parcelado em 10x",shortPay:"(em 10x)",
+        intro:"Você está pronta para levar seu tricô a um novo nível. Seu resultado mostra que não quer apenas copiar uma receita: quer dominar uma técnica encantadora, construir repertório e criar peças que façam as pessoas parar, olhar e desejar.",
+        items:["Módulo básico de tricô","15 bichinhos passo a passo","Acesso por 1 ano","Ideal para aprender, criar e vender"],
+        cta:"Quero o curso completo",url:links.completo
+      },
+      mini:{
+        image:"urso Nico.png",imageAlt:"Urso Nico feito em tricô",
+        showcaseTitle:"Projetos incluídos no Mini Curso",
+        module:"Módulo Básico de Tricô — para começar com segurança.",
+        extra:"Receitas passo a passo e aulas em vídeo para acompanhar a produção.",
+        gallery:[
+          ["ratinha.png","Ratinha Bela"],["urso Nico.png","Urso Nico"],["Trio de Naninhas.png","Trio de Naninhas"],["patinha.png","Pata Penélope"],["Elefante Tito.png","Elefante Tito"]
+        ],
+        pieces:["Ratinha Bela","Urso Nico","Trio de Naninhas (Pato, Ovelha e Cachorro)","Pata Penélope","Ovelha Nina","Elefante Tito","Coelha Alice","Coelho Bento","Gato Pedro"],
+        title:"Mini Curso de Tricorumi",price:"R$ 127,00",suffix:"parcelado em 10x",shortPay:"(em 10x)",
+        intro:"Seu momento pede um começo leve, possível e cheio de pequenas conquistas. Com orientação e projetos escolhidos para dar segurança, você poderá sentir aquela alegria deliciosa de olhar o primeiro bichinho pronto e pensar: “fui eu que fiz!”.",
+        items:["Módulo básico de tricô","5 bichinhos passo a passo","Aprendizado direto e acolhedor","Ideal para os primeiros projetos"],
+        cta:"Quero o mini curso",url:links.mini
+      },
+      clube:{
+        image:"coelha-aurora.png",imageAlt:"Coelha Aurora feita em tricô",
+        showcaseTitle:"Um clube cheio de possibilidades",
+        module:"Acesso a todos os bichinhos disponíveis na biblioteca enquanto você assina.",
+        extra:"Novos personagens e receitas são adicionados ao Clube — seu repertório continua crescendo.",
+        gallery:[
+          ["capivara-amora.png","Capivara Amora"],["coelha-aurora.png","Coelha Aurora"],["coelho-bento.png","Coelho Bento"],["urso-ludovico.png","Urso Ludovico"],["urso_oliver.png","Urso Oliver"]
+        ],
+        pieces:["Coelhas e coelhos","Ursos","Naninha e personagens para bebê","Animais afetivos","Projetos sazonais","Todos os novos bichinhos disponibilizados no Clube"],
+        title:"Clube do Tricorumi",price:"R$ 19,90",suffix:"no primeiro mês",shortPay:"no 1º mês",
+        intro:"Você é movida por novidade, inspiração e pela vontade de criar sempre mais. Imagine abrir uma biblioteca de Tricorumi e escolher, a cada novo projeto, qual personagem vai nascer das suas agulhas.",
+        items:["Depois, R$ 47,90 por mês","Biblioteca completa enquanto assina","Novas receitas adicionadas","Cancele quando quiser"],
+        cta:"Quero entrar no clube",url:links.clube
+      },
+      pdf:{
+        image:"patinha.png",imageAlt:"Patinha Penélope feita em tricô",
+        showcaseTitle:"Você escolhe qual bichinho quer produzir",
+        module:"Clique no catálogo, veja todas as receitas disponíveis e escolha seu personagem favorito.",
+        extra:"Compre somente o PDF que quiser e produza no seu ritmo.",
+        gallery:[
+          ["patinha.png","Pata Penélope"],["Ovelha Nina.png","Ovelha Nina"],["coelho-bento.png","Coelho Bento"],["capivara-amora.png","Capivara Amora"],["ratinha.png","Ratinha Bela"]
+        ],
+        pieces:[],
+        title:"PDF Avulso",price:"R$ 47,90",suffix:"cada receita",shortPay:"cada receita",
+        intro:"Você gosta de liberdade e já sabe o que faz seus olhos brilharem: encontrar um bichinho encantador, escolher a receita e começar. Um único personagem pode ser o início de uma paixão — o perigo é querer fazer a família inteira depois 😂.",
+        items:["Escolha somente seu favorito","Receita digital passo a passo","Compre quando quiser","Ideal para testar a técnica"],
+        cta:"Quero escolher um PDF",url:links.pdf
+      }
+    };
+
+    const app=document.getElementById("app");
+    const progress=document.getElementById("progress");
+    const fill=document.getElementById("fill");
+    const progressText=document.getElementById("progressText");
+    let index=-1;
+    let scores={completo:0,mini:0,clube:0,pdf:0};
+    let answers=[];
+    let techniqueAnswer="no";
+
+    function questionPosition(){
+      return screens.slice(0,index+1).filter(s=>s.type==="question").length;
+    }
+    function updateProgress(){
+      const current=questionPosition();
+      const total=screens.filter(s=>s.type==="question").length;
+      progress.style.display=index>=0?"block":"none";
+      fill.style.width=`${Math.max(0,(current-1)/total*100)}%`;
+      progressText.textContent=current?`Pergunta ${current} de ${total}`:"";
+    }
+    function start(){index=0;render()}
+    function render(){
+      document.body.classList.remove("result-mode");
+      document.documentElement.classList.remove("result-mode");
+      updateProgress();
+      const s=screens[index];
+      if(s.type==="message") return renderMessage(s);
+      if(s.type==="techniqueMessage") return renderMessage(techniqueMessages[techniqueAnswer]);
+      const answersHtml=s.answers.map((a,i)=>{
+        const label=s.price?`<b>${a[0]}</b>${a[1]}`:a[0];
+        return `<button class="answer" type="button" data-i="${i}">${label}</button>`;
+      }).join("");
+      const questionVisual=s.image?`<div class="question-heading">
+        <img class="question-animal" src="${encodeURI(s.image)}" alt="${s.imageAlt||"Bichinho feito em tricô"}" decoding="async">
+        <h3>${s.title}</h3>
+      </div>`:`<h3>${s.title}</h3>`;
+      app.innerHTML=`<section class="card question-card">
+        <span class="eyebrow">${s.price?"Última pergunta • seu investimento":"Descubra sua fase atual no tricô"}</span>
+        ${questionVisual}
+        <div class="answers">${answersHtml}</div>
+      </section>`;
+      app.querySelectorAll(".answer").forEach(btn=>btn.onclick=()=>choose(+btn.dataset.i));
+    }
+    function renderMessage(s){
+      document.body.classList.remove("result-mode");
+      document.documentElement.classList.remove("result-mode");
+      const productVisual=s.image?`<div class="message-product">
+        <figure class="product-preview">
+          <img src="${encodeURI(s.image)}" alt="${s.imageAlt||s.character||"Bichinho feito em tricô"}" decoding="async">
+          <figcaption>${s.character||"Projeto Tricorumi"}</figcaption>
+        </figure>
+        <div class="message-copy">
+          <h2>${s.title}</h2>
+          <p>${s.text}</p>
+          <button class="btn primary" type="button" id="continue">Continuar</button>
+        </div>
+      </div>`:`<span class="message-icon">${s.icon}</span><h2>${s.title}</h2><p>${s.text}</p><button class="btn primary" type="button" id="continue">Continuar</button>`;
+      app.innerHTML=`<section class="card message-card">${productVisual}</section>`;
+      document.getElementById("continue").onclick=next;
+    }
+    function choose(i){
+      const choice=screens[index].answers[i];
+      if(screens[index].technique) techniqueAnswer=i===0?"yes":"no";
+      const score=choice[choice.length-1];
+      Object.entries(score).forEach(([k,v])=>scores[k]+=v);
+      answers.push({screen:index,choice:i,score});
+      next();
+    }
+    function next(){
+      index++;
+      if(index<screens.length) render(); else showResult();
+    }
+    function winner(){
+      const priority=["completo","mini","clube","pdf"];
+      return priority.sort((a,b)=>scores[b]-scores[a])[0];
+    }
+    function showResult(){
+      document.body.classList.add("result-mode");
+      document.documentElement.classList.add("result-mode");
+      window.scrollTo({top:0,behavior:"auto"});
+      progress.style.display="block";fill.style.width="100%";progressText.textContent="Resultado pronto ✨";
+      const key=winner(),p=products[key];
+      const alternatives=Object.entries(products).filter(([k])=>k!==key)
+        .map(([k,v])=>`<a class="other-option" href="${v.url}" target="_blank" rel="noopener">${v.title}<span>${v.price} ${v.shortPay}</span></a>`).join("");
+      const projectThumbs=p.gallery.map(([src,name])=>`<figure class="project-thumb">
+        <img src="${encodeURI(src)}" alt="${name} feito em tricô" decoding="async">
+        <figcaption>${name}</figcaption>
+      </figure>`).join("");
+      const projectNames=p.pieces.length?`<ul class="piece-grid" aria-label="Peças incluídas">${p.pieces.map(name=>`<li>${name}</li>`).join("")}</ul>`:"";
+      const showcase=`<section class="product-showcase" aria-label="Conteúdo incluído em ${p.title}">
+        <strong class="product-showcase-title">${p.showcaseTitle}</strong>
+        <div class="project-thumbs">${projectThumbs}</div>
+        <p class="module-note">🧶 ${p.module}</p>
+        ${projectNames}
+        <p class="showcase-extra">${p.extra}</p>
+      </section>`;
+      app.innerHTML=`<section class="card result-card">
+        <div class="result-layout">
+          <div>
+            <span class="eyebrow">Seu melhor próximo passo</span>
+            <h2>${p.title}</h2>
+            <p>${p.intro}</p>
+            <div class="price"><strong>${p.price}</strong><span>${p.suffix}</span></div>
+            ${showcase}
+            <div class="result-actions">
+              <a class="btn primary" href="${p.url}" target="_blank" rel="noopener">${p.cta}</a>
+              <button class="btn ghost" type="button" id="restart">Refazer quiz</button>
+            </div>
+            <p class="other-title">Mudou de ideia? Você também pode escolher:</p>
+            <div class="other-options">${alternatives}</div>
+          </div>
+          <aside class="recommend">
+            <img class="result-animal" src="${encodeURI(p.image)}" alt="${p.imageAlt}" decoding="async">
+            <strong>Por que combina com você?</strong>
+            <p>A indicação considera seu nível, sua forma de aprender, seu objetivo e o investimento que faz sentido agora — não apenas a última resposta.</p>
+            <p><strong>Garantia de 7 dias.</strong> Você pode conhecer o conteúdo e decidir com tranquilidade.</p>
+            <p class="guarantee">A técnica ainda é pouco conhecida por muitas artesãs e está ganhando mercado pelo apelo afetivo e visual.</p>
+          </aside>
+        </div>
+      </section>`;
+      document.getElementById("restart").onclick=restart;
+    }
+    function restart(){
+      index=0;scores={completo:0,mini:0,clube:0,pdf:0};answers=[];techniqueAnswer="no";
+      render();
+    }
+    function renderIntro(){
+      document.body.classList.remove("result-mode");
+      document.documentElement.classList.remove("result-mode");
+      progress.style.display="none";
+      app.innerHTML=`<section class="card">
+        <span class="eyebrow">Quiz rápido • resultado personalizado</span>
+        <h1>Descubra sua fase atual no tricô</h1>
+        <p class="lead">Em poucos passos, descubra se o melhor caminho para você é o curso completo, o mini curso, o clube de assinaturas ou um PDF avulso.</p>
+        <button class="btn primary" type="button" id="start">Descobrir meu caminho</button>
+        <p class="micro">Leva cerca de 2 minutos • sem cadastro • resultado na hora</p>
+      </section>`;
+      document.getElementById("start").onclick=start;
+    }
+    index=0;
+    render();
+  </script>
+</body>
+</html>
